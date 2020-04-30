@@ -1,8 +1,8 @@
-# rest_api_testing
+# COVID19 Tracker App
 
-A new Flutter project.
+A live trakcer for COVID19 stats across the Globe and my Home country Pakistan. It uses APIs so the data is live not static
 
-## Getting Started
+<img src = "ScreenShot/covid.png">
 
 This project is a starting point for a Flutter application.
 
