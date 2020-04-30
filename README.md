@@ -4,6 +4,8 @@ It's a dedication to my closest friend who has been tested positive for COVID. P
 
 A live trakcer for COVID19 stats across the Globe and my Home country Pakistan. It uses APIs so the data is live not static
 
+## Screen Shots
+
 <img src = "ScreenShot/covid19.png">
 
 ## APIs Information
