@@ -2,7 +2,7 @@
 
 A live trakcer for COVID19 stats across the Globe and my Home country Pakistan. It uses APIs so the data is live not static
 
-<img src = "ScreenShot/covid.png">
+<img src = "ScreenShot/covid19.png">
 
 This project is a starting point for a Flutter application.
 
