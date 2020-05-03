@@ -11,7 +11,6 @@ class World extends StatefulWidget {
 }
 
 class _WorldState extends State<World> with TickerProviderStateMixin {
-  final formatter = NumberFormat("###,###");
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -20,64 +19,83 @@ class _WorldState extends State<World> with TickerProviderStateMixin {
       padding: EdgeInsets.symmetric(
           vertical: height * 0.01, horizontal: width * 0.02),
       width: width,
-      height: height * 0.56,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      height: height * 0.57,
+      child: Stack(
         children: <Widget>[
           Text(
             "\tGlobal COVID-19",
-            style:
-                TextStyle(fontSize: height * 0.04, fontWeight: FontWeight.w200, fontFamily: 'MyFont'),
+            style: TextStyle(
+                fontSize: height * 0.04,
+                fontWeight: FontWeight.w200,
+                fontFamily: 'MyFont'),
           ),
-          SizedBox(height: height * 0.03),
-          FutureBuilder<GlobalData>(
-            future: getCase(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                int caseCount = int.parse(snapshot.data.cases);
-                int deathCount = int.parse(snapshot.data.deaths);
-                int recoveredCount = int.parse(snapshot.data.recovered);
-                return Column(
-                  children: <Widget>[
-                    WidgetAnimator(
-                      GlobalListTile(
-                        caseInfo: formatter.format(caseCount),
-                        infoHeader: 'Cases',
-                        tileColor: Colors.blueAccent.withAlpha(200),
-                      ),
+          GlobalDataList()
+        ],
+      ),
+    );
+  }
+}
+
+class GlobalDataList extends StatelessWidget {
+  final formatter = NumberFormat("###,###");
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Positioned(
+      top: height * 0.07,
+      child: FutureBuilder<GlobalData>(
+        future: getCase(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            int caseCount = int.parse(snapshot.data.cases);
+            int deathCount = int.parse(snapshot.data.deaths);
+            int recoveredCount = int.parse(snapshot.data.recovered);
+
+            return Container(
+              height: height * 0.6,
+              width: width * 0.95,
+              child: ListView(
+                children: <Widget>[
+                  WidgetAnimator(
+                    GlobalListTile(
+                      caseInfo: formatter.format(caseCount),
+                      infoHeader: 'Cases',
+                      tileColor: Colors.blueAccent.withAlpha(200),
                     ),
-                    WidgetAnimator(
-                      GlobalListTile(
-                        caseInfo: formatter.format(deathCount),
-                        infoHeader: 'Deaths',
-                        tileColor: Colors.redAccent.withAlpha(200),
-                      ),
+                  ),
+                  WidgetAnimator(
+                    GlobalListTile(
+                      caseInfo: formatter.format(deathCount),
+                      infoHeader: 'Deaths',
+                      tileColor: Colors.redAccent.withAlpha(200),
                     ),
-                    WidgetAnimator(
-                      GlobalListTile(
-                        caseInfo: formatter.format(recoveredCount),
-                        infoHeader: 'Recoveries',
-                        tileColor: Colors.green.withAlpha(200),
-                      ),
-                    )
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Container(
-                    width: width,
-                    height: height * 0.4,
-                    child: Center(child: Text("${snapshot.error}")));
-              }
-              return Container(
+                  ),
+                  WidgetAnimator(
+                    GlobalListTile(
+                      caseInfo: formatter.format(recoveredCount),
+                      infoHeader: 'Recoveries',
+                      tileColor: Colors.green.withAlpha(200),
+                    ),
+                  )
+                ],
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Container(
                 width: width,
                 height: height * 0.4,
-                child: Center(
-                  child: CircularProgressIndicator(strokeWidth: 2.0),
-                ),
-              );
-            },
-          ),
-        ],
+                child: Center(child: Text("${snapshot.error}")));
+          }
+          return Container(
+            width: width,
+            height: height * 0.4,
+            child: Center(
+              child: CircularProgressIndicator(strokeWidth: 2.0),
+            ),
+          );
+        },
       ),
     );
   }
