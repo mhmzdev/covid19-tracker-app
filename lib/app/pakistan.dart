@@ -46,23 +46,26 @@ class _PakistanState extends State<Pakistan> with TickerProviderStateMixin {
                 future: getHomeCase(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.green),
-                        ),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        Text("Please Wait...",
-                            style: TextStyle(fontFamily: 'MyFont')),
-                      ],
+                    return Container(                      
+                      height: height * 0.4155,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          CircularProgressIndicator(
+                            strokeWidth: 2.0,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.green),
+                          ),
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          Text("Please Wait...",
+                              style: TextStyle(fontFamily: 'MyFont')),
+                        ],
+                      ),
                     );
                   } else {
                     return Column(

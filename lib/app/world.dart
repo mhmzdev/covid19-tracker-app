@@ -63,13 +63,15 @@ class GlobalDataList extends StatelessWidget {
                       caseInfo: formatter.format(caseCount),
                       infoHeader: 'Cases',
                       tileColor: Colors.blueAccent.withAlpha(200),
+                      assetImage: 'images/cases.png',
                     ),
                   ),
                   WidgetAnimator(
                     GlobalListTile(
                       caseInfo: formatter.format(deathCount),
                       infoHeader: 'Deaths',
-                      tileColor: Colors.redAccent.withAlpha(200),
+                      tileColor: Colors.red.withAlpha(200),
+                      assetImage: 'images/death.png',
                     ),
                   ),
                   WidgetAnimator(
@@ -77,6 +79,7 @@ class GlobalDataList extends StatelessWidget {
                       caseInfo: formatter.format(recoveredCount),
                       infoHeader: 'Recoveries',
                       tileColor: Colors.green.withAlpha(200),
+                      assetImage: 'images/recover.png',
                     ),
                   )
                 ],

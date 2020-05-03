@@ -49,6 +49,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blueAccent,
@@ -102,7 +103,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         children: <Widget>[
                           Image.asset(
                             'images/personFight.jpg',
-                            height: height * 0.2,
+                            height: height * 0.25,
                           ),
                           Text(
                             "Stay Home, Stay Safe!",
@@ -111,9 +112,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: height * 0.035,
-                    ),
+                    SizedBox(height: height * 0.035),
                     children[currentIndex]
                   ],
                 ),
