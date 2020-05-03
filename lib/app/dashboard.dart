@@ -94,7 +94,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
           ? SafeArea(
               child: Scaffold(
                 backgroundColor: Colors.white,
-                body: Column(
+                body: ListView(
                   children: <Widget>[
                     Transform.translate(
                       offset: Offset(0, animation.value),
