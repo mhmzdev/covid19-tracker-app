@@ -1,4 +1,4 @@
-package com.example.rest_api_testing
+package com.example.covid19
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
