@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:covid19/app/dashboard.dart';
+import 'package:covid19/views/dashboard.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(MyApp());
