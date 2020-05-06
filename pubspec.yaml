@@ -16,7 +16,6 @@ dependencies:
   intl: ^0.16.1
   splashscreen: ^1.2.0
   progress_indicators: ^0.1.5
-  
 
 dev_dependencies:
   flutter_test:

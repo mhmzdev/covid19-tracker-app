@@ -51,7 +51,7 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
               child: RotationTransition(
                 turns: Tween(begin: 1.0, end: 0.0).animate(_controller),
                 child: Image.asset(
-                  'images/cases.png',
+                  'images/covidBlue.png',
                   height: height * 0.22,
                 ),
               ),
@@ -70,7 +70,7 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
               child: RotationTransition(
                 turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
                 child: Image.asset(
-                  'images/covid2.png',
+                  'images/covidRed.png',
                   height: height * 0.18,
                 ),
               ),
@@ -84,7 +84,7 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
             child: RotationTransition(
               turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
               child: Image.asset(
-                'images/covid1.png',
+                'images/covidGreen.png',
                 height: height * 0.2,
               ),
             ),
@@ -102,9 +102,13 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
                 height: height * 0.03,
               ),
               CircleAvatar(
-                backgroundColor: Colors.blueAccent.withAlpha(100),
-                maxRadius: height * 0.12,
-                backgroundImage: AssetImage('images/Hamza.jpg'),
+                maxRadius: height * 0.123,
+                backgroundColor: Colors.orangeAccent,
+                child: CircleAvatar(
+                  maxRadius: height * 0.12,
+                  backgroundImage:
+                      NetworkImage("https://i.ibb.co/mXRTGQX/Hamza.jpg"),
+                ),
               ),
               SizedBox(
                 height: height * 0.01,
@@ -117,29 +121,13 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
               SizedBox(
                 height: height * 0.03,
               ),
-              Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                Image.asset(
-                  'images/logo.png',
-                  height: height * 0.04,
-                ),
-                Text(
-                  "Flutter Developer",
-                  style:
-                      TextStyle(fontFamily: 'MyFont', fontSize: height * 0.022),
-                ),
-              ]),
-              SizedBox(
-                height: height * 0.01,
+              Text(
+                "Flutter Developer",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'MyFont',
+                    fontSize: height * 0.022),
               ),
-              Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                Image.asset(
-                  'images/git.png',
-                  height: height * 0.05,
-                ),
-                Text("m-hamzashakeel",
-                    style: TextStyle(
-                        fontFamily: 'MyFont', fontSize: height * 0.022)),
-              ]),
               SizedBox(
                 height: height * 0.02,
               ),

@@ -19,7 +19,6 @@ class _CountryState extends State<Country> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,13 +33,9 @@ class _CountryState extends State<Country> {
                   future: CovidAPI().getCountryData(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return ListView.separated(
+                      return ListView.builder(
                         padding: EdgeInsets.symmetric(
                             horizontal: width * 0.02, vertical: height * 0.01),
-                        separatorBuilder: (BuildContext context, int index) =>
-                            Divider(
-                          color: Colors.transparent,
-                        ),
                         itemCount: snapshot.data.countries.length,
                         itemBuilder: (context, index) {
                           return WidgetAnimator(Card(
@@ -130,8 +125,6 @@ class _CountryState extends State<Country> {
           keyboardType: TextInputType.text,
           autofocus: false,
           decoration: InputDecoration(
-              fillColor: Colors.white,
-              filled: true,
               labelText: 'Country Name',
               prefixIcon: Icon(
                 Icons.search,
@@ -139,11 +132,11 @@ class _CountryState extends State<Country> {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: BorderSide(color: Colors.blueAccent),
+                borderSide: BorderSide(color: Colors.orangeAccent),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: BorderSide(color: Colors.blueAccent),
+                borderSide: BorderSide(color: Colors.orangeAccent),
               )),
         ),
       ),

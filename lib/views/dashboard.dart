@@ -43,45 +43,45 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-      selectedItemColor: Colors.blueAccent,
-      unselectedItemColor: Colors.grey,
-      showUnselectedLabels: true,
-      selectedFontSize: height * 0.02,
-      iconSize: height * 0.035,
-      onTap: onTabTapped,
-      currentIndex: currentIndex,
-      items: [
-        BottomNavigationBarItem(
-          activeIcon: RotationTransition(
-            turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-            child: Icon(MyIcons.globe_1),
-          ),
-          icon: Icon(MyIcons.globe_1),
-          title: Text(
-            "Global",
-            style: TextStyle(fontFamily: 'MyFont'),
-          ),
-        ),
-        BottomNavigationBarItem(
+        selectedItemColor: Colors.orangeAccent,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        selectedFontSize: height * 0.02,
+        iconSize: height * 0.035,
+        onTap: onTabTapped,
+        currentIndex: currentIndex,
+        items: [
+          BottomNavigationBarItem(
             activeIcon: RotationTransition(
               turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-              child: Icon(Icons.star),
+              child: Icon(MyIcons.globe_1),
             ),
-            icon: Icon(Icons.star),
-            title:
-                Text("Home Country", style: TextStyle(fontFamily: 'MyFont'))),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.flag),
-            title: Text("Countries", style: TextStyle(fontFamily: 'MyFont'))),
-        BottomNavigationBarItem(
-            activeIcon: RotationTransition(
-              turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-              child: Icon(Icons.info),
+            icon: Icon(MyIcons.globe_1),
+            title: Text(
+              "Global",
+              style: TextStyle(fontFamily: 'MyFont'),
             ),
-            icon: Icon(Icons.info),
-            title: Text("About", style: TextStyle(fontFamily: 'MyFont')))
-      ],
-    ),
+          ),
+          BottomNavigationBarItem(
+              activeIcon: RotationTransition(
+                turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                child: Icon(Icons.star),
+              ),
+              icon: Icon(Icons.star),
+              title:
+                  Text("Home Country", style: TextStyle(fontFamily: 'MyFont'))),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.flag),
+              title: Text("Countries", style: TextStyle(fontFamily: 'MyFont'))),
+          BottomNavigationBarItem(
+              activeIcon: RotationTransition(
+                turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                child: Icon(Icons.info),
+              ),
+              icon: Icon(Icons.info),
+              title: Text("About", style: TextStyle(fontFamily: 'MyFont')))
+        ],
+      ),
       body: currentIndex == 0
           ? SafeArea(
               child: Scaffold(

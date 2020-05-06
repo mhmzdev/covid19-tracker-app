@@ -64,7 +64,7 @@ class GlobalDataList extends StatelessWidget {
                       caseInfo: formatter.format(caseCount),
                       infoHeader: 'Cases',
                       tileColor: Colors.blueAccent.withAlpha(200),
-                      assetImage: 'images/cases.png',
+                      assetImage: 'images/covidBlue.png',
                     ),
                   ),
                   WidgetAnimator(
