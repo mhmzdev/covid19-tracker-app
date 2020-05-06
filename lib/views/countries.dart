@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'package:covid19/animation/bottomAnimation.dart';
-import 'package:http/http.dart' as http;
+import 'package:covid19/customWidgets/customLoader.dart';
+import 'package:covid19/views/countriesDetails.dart';
 import 'package:flutter/material.dart';
-import 'package:covid19/app/customWidgets/countryListTile.dart';
-
-List<CountryData> orgList;
-List<CountryData> filteredList;
+import 'package:covid19/controller/covidAPI.dart';
+import 'package:intl/intl.dart';
 
 class Country extends StatefulWidget {
   @override
@@ -13,6 +11,7 @@ class Country extends StatefulWidget {
 }
 
 class _CountryState extends State<Country> {
+  final formatter = NumberFormat("###,###");
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -32,9 +31,9 @@ class _CountryState extends State<Country> {
                 width: width,
                 height: height * 0.9,
                 child: FutureBuilder(
-                  future: getCountryData(),
-                  builder: (context, country) {
-                    if (country.hasData) {
+                  future: CovidAPI().getCountryData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
                       return ListView.separated(
                         padding: EdgeInsets.symmetric(
                             horizontal: width * 0.02, vertical: height * 0.01),
@@ -42,42 +41,70 @@ class _CountryState extends State<Country> {
                             Divider(
                           color: Colors.transparent,
                         ),
-                        itemCount: filteredList?.length ?? 0,
+                        itemCount: snapshot.data.countries.length,
                         itemBuilder: (context, index) {
-                          return WidgetAnimator(
-                            CountryListTile(
-                              countryName:
-                                  filteredList.elementAt(index + 1).countryName,
-                              totalCases: filteredList
-                                  .elementAt(index + 1)
-                                  .countryCases,
-                              totalRecoverd: filteredList
-                                  .elementAt(index + 1)
-                                  .countryRecovered,
-                              totalDeaths: filteredList
-                                  .elementAt(index + 1)
-                                  .countryDeaths,
-                              todayCases:
-                                  filteredList.elementAt(index + 1).todayCases,
-                              todayDeaths:
-                                  filteredList.elementAt(index + 1).todayDeaths,
-                              activeCases:
-                                  filteredList.elementAt(index + 1).activeCases,
-                              cCases:
-                                  filteredList.elementAt(index + 1).critCases,
-                              totalTests:
-                                  filteredList.elementAt(index + 1).totalTests,
+                          return WidgetAnimator(Card(
+                            child: ListTile(
+                              trailing:
+                                  Icon(Icons.play_arrow, size: height * 0.02),
+                              title: Text(snapshot
+                                  .data.countries[index + 1].countryName),
+                              subtitle: Text(
+                                  "Cases: ${formatter.format(snapshot.data.countries[index + 1].countryCases)}"),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CountryDetails(
+                                              countryName: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .countryName,
+                                              totalCases: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .countryCases,
+                                              totalRecoverd: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .countryRecovered,
+                                              totalDeaths: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .countryDeaths,
+                                              todayCases: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .todayCases,
+                                              todayDeaths: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .todayDeaths,
+                                              activeCases: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .activeCases,
+                                              cCases: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .critCases,
+                                              totalTests: snapshot
+                                                  .data
+                                                  .countries[index + 1]
+                                                  .totalTests,
+                                            )));
+                              },
                             ),
-                          );
+                          ));
                         },
                       );
-                    } else if (country.hasError) {
+                    } else if (snapshot.hasError) {
                       return Center(
-                        child: Text("${country.error}"),
+                        child: Text("${snapshot.error}"),
                       );
                     } else {
                       return Center(
-                        child: CircularProgressIndicator(strokeWidth: 2.0),
+                        child: VirusLoader(),
                       );
                     }
                   },
@@ -100,15 +127,6 @@ class _CountryState extends State<Country> {
         borderRadius: BorderRadius.circular(12.0),
         elevation: 4.0,
         child: TextFormField(
-          onChanged: (string) {
-            setState(() {
-              filteredList = orgList
-                  .where((c) => (c.countryName
-                      .toLowerCase()
-                      .contains(string.toLowerCase())))
-                  .toList();
-            });
-          },
           keyboardType: TextInputType.text,
           autofocus: false,
           decoration: InputDecoration(
@@ -130,68 +148,5 @@ class _CountryState extends State<Country> {
         ),
       ),
     );
-  }
-
-  Future<CountryDataList> getCountryData() async {
-    String url = 'https://coronavirus-19-api.herokuapp.com/countries';
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      final jsonRes = json.decode(response.body);
-      return CountryDataList.fromJson(jsonRes);
-    } else {
-      throw Exception("Failed due to Network Error");
-    }
-  }
-}
-
-class CountryDataList {
-  final List<CountryData> countries;
-  final int listLength;
-
-  CountryDataList({this.countries, this.listLength});
-
-  factory CountryDataList.fromJson(List<dynamic> parsedJson) {
-    List<CountryData> country = new List<CountryData>();
-    country = parsedJson.map((i) => CountryData.fromJSON(i)).toList();
-    orgList = country;
-    filteredList = country;
-    return new CountryDataList(countries: country, listLength: country.length);
-  }
-}
-
-class CountryData {
-  final String countryName;
-  final int countryCases;
-  final int countryDeaths;
-  final String countryRecovered;
-  final int todayCases;
-  final int todayDeaths;
-  final int activeCases;
-  final int critCases;
-  final int totalTests;
-
-  CountryData(
-      {this.activeCases,
-      this.critCases,
-      this.totalTests,
-      this.todayCases,
-      this.todayDeaths,
-      this.countryName,
-      this.countryCases,
-      this.countryDeaths,
-      this.countryRecovered});
-
-  factory CountryData.fromJSON(Map<String, dynamic> json) {
-    return CountryData(
-        countryName: json['country'],
-        countryCases: json['cases'],
-        countryDeaths: json['deaths'],
-        countryRecovered: json['recovered'].toString(),
-        todayCases: json['todayCases'],
-        todayDeaths: json["todayDeaths"],
-        activeCases: json['active'],
-        critCases: json["critical"],
-        totalTests: json["totalTests"]);
   }
 }

@@ -1,9 +1,10 @@
-import 'dart:convert';
 import 'package:covid19/animation/bottomAnimation.dart';
-import 'package:covid19/app/customWidgets/globalListTile.dart';
-import 'package:http/http.dart' as http;
+import 'package:covid19/customWidgets/customLoader.dart';
+import 'package:covid19/customWidgets/globalListTile.dart';
+import 'package:covid19/model/globalDataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:covid19/controller/covidAPI.dart';
 
 class World extends StatefulWidget {
   @override
@@ -46,7 +47,7 @@ class GlobalDataList extends StatelessWidget {
     return Positioned(
       top: height * 0.07,
       child: FutureBuilder<GlobalData>(
-        future: getCase(),
+        future: CovidAPI().getCase(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             int caseCount = int.parse(snapshot.data.cases);
@@ -95,36 +96,12 @@ class GlobalDataList extends StatelessWidget {
             width: width,
             height: height * 0.4,
             child: Center(
-              child: CircularProgressIndicator(strokeWidth: 2.0),
+              child: VirusLoader(),
             ),
           );
         },
       ),
     );
   }
-
-  Future<GlobalData> getCase() async {
-    String url = 'https://coronavirus-19-api.herokuapp.com/all';
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      return GlobalData.fromJSON(json.decode(response.body));
-    } else {
-      throw Exception("Failed to load Post");
-    }
-  }
 }
 
-class GlobalData {
-  final String cases;
-  final String deaths;
-  final String recovered;
-  GlobalData({this.cases, this.deaths, this.recovered});
-
-  factory GlobalData.fromJSON(Map<String, dynamic> json) {
-    return GlobalData(
-        cases: json['cases'].toString(),
-        deaths: json['deaths'].toString(),
-        recovered: json['recovered'].toString());
-  }
-}

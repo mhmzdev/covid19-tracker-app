@@ -10,13 +10,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(
-        seconds: 3,
+        seconds: 2,
         imageBackground: AssetImage('images/covidNew.png'),
-        loadingText: Text('Stay Home, Stay Safe!', style: TextStyle(fontFamily: 'MyFont', fontWeight: FontWeight.bold)),
+        loadingText: Text('Stay Home, Stay Safe!',
+            style:
+                TextStyle(fontFamily: 'MyFont', fontWeight: FontWeight.bold)),
         loaderColor: Colors.orange,
         navigateAfterSeconds: Dashboard(),
       ),
     );
   }
 }
-
