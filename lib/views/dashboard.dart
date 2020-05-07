@@ -85,7 +85,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       body: currentIndex == 0
           ? SafeArea(
               child: Scaffold(
-                backgroundColor: Colors.white,
+                //backgroundColor: Colors.white,
                 body: ListView(
                   children: <Widget>[
                     MainImage(),
@@ -134,7 +134,7 @@ class _MainImageState extends State<MainImage>
       child: Column(
         children: <Widget>[
           Image.asset(
-            'images/personFight.jpg',
+            'images/personFighting.png',
             height: MediaQuery.of(context).size.height * 0.25,
           ),
           Text(

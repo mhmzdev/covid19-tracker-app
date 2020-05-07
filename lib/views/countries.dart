@@ -94,7 +94,14 @@ class CountriesList extends StatelessWidget {
   }
 }
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
+  @override
+  _SearchBarState createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<SearchBar> {
+
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -109,10 +116,13 @@ class SearchBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           elevation: 4.0,
           child: TextFormField(
+            onChanged: (string) {
+              setState(() {});
+            },
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
-                labelText: 'Country Name',
+                hintText: "Country Name",
                 prefixIcon: Icon(
                   Icons.search,
                   size: height * 0.035,

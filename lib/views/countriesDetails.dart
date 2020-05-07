@@ -29,7 +29,7 @@ class CountryDetails extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: CustomScrollView( 
+        body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               expandedHeight: height * 0.26,
@@ -107,17 +107,17 @@ class DetailCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(5.0),
         child: ListTile(
-          title: Text("${formatter.format(info)}",
-              style: TextStyle(
-                  fontSize: height * 0.04,
-                  fontFamily: "MyFont",
-                  color: Colors.black45)),
+          title: Text(
+            "${formatter.format(info)}",
+            style: TextStyle(
+                fontSize: height * 0.04,
+                fontFamily: "MyFont"),
+          ),
           subtitle: Text(
             heading,
             style: TextStyle(
                 fontSize: height * 0.02,
-                fontFamily: "MyFont",
-                color: Colors.black),
+                fontFamily: "MyFont"),
           ),
           trailing: Icon(
             icon,
