@@ -29,9 +29,7 @@ class CountryDetails extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        resizeToAvoidBottomPadding: false,
-        body: CustomScrollView(
+        body: CustomScrollView( 
           slivers: <Widget>[
             SliverAppBar(
               expandedHeight: height * 0.26,
@@ -106,7 +104,6 @@ class DetailCard extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Card(
-      elevation: 4.0,
       child: Container(
         padding: EdgeInsets.all(5.0),
         child: ListTile(

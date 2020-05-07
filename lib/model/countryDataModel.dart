@@ -7,7 +7,7 @@ class CountryDataList {
   factory CountryDataList.fromJson(List<dynamic> parsedJson) {
     List<CountryData> country = new List<CountryData>();
     country = parsedJson.map((i) => CountryData.fromJSON(i)).toList();
-    return new CountryDataList(countries: country);
+    return new CountryDataList(countries: country,);
   }
 }
 

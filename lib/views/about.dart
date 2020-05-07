@@ -91,62 +91,68 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
           ),
         ),
         Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "DEVELOPER",
-                style: TextStyle(fontFamily: 'MyFont', fontSize: height * 0.04),
-              ),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              CircleAvatar(
-                maxRadius: height * 0.123,
-                backgroundColor: Colors.orangeAccent,
-                child: CircleAvatar(
-                  maxRadius: height * 0.12,
-                  backgroundImage:
-                      NetworkImage("https://i.ibb.co/mXRTGQX/Hamza.jpg"),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.01,
-              ),
-              Text("Muhammad Hamza",
-                  style: TextStyle(
-                      fontFamily: 'MyFont',
-                      fontSize: height * 0.03,
-                      fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              Text(
-                "Flutter Developer",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'MyFont',
-                    fontSize: height * 0.022),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                Text(
-                  "Email Me",
-                  style: TextStyle(
-                      fontFamily: 'MyFont',
-                      fontWeight: FontWeight.bold,
-                      fontSize: height * 0.02),
-                ),
-                Text("hamza.6.shakeel@gmail.com",
-                    style: TextStyle(
-                        fontFamily: 'MyFont', fontSize: height * 0.02)),
-              ]),
-            ],
-          ),
+          child: PersonalInfo(),
         )
       ],
     ));
+  }
+}
+
+class PersonalInfo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          "DEVELOPER",
+          style: TextStyle(fontFamily: 'MyFont', fontSize: height * 0.04),
+        ),
+        SizedBox(
+          height: height * 0.03,
+        ),
+        CircleAvatar(
+          maxRadius: height * 0.123,
+          backgroundColor: Colors.orangeAccent,
+          child: CircleAvatar(
+            maxRadius: height * 0.12,
+            backgroundImage: NetworkImage("https://i.ibb.co/mXRTGQX/Hamza.jpg"),
+          ),
+        ),
+        SizedBox(
+          height: height * 0.01,
+        ),
+        Text("Muhammad Hamza",
+            style: TextStyle(
+                fontFamily: 'MyFont',
+                fontSize: height * 0.03,
+                fontWeight: FontWeight.bold)),
+        SizedBox(
+          height: height * 0.03,
+        ),
+        Text(
+          "Flutter Developer",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'MyFont',
+              fontSize: height * 0.022),
+        ),
+        SizedBox(
+          height: height * 0.02,
+        ),
+        Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          Text(
+            "Email Me",
+            style: TextStyle(
+                fontFamily: 'MyFont',
+                fontWeight: FontWeight.bold,
+                fontSize: height * 0.02),
+          ),
+          Text("hamza.6.shakeel@gmail.com",
+              style: TextStyle(fontFamily: 'MyFont', fontSize: height * 0.02)),
+        ]),
+      ],
+    );
   }
 }
