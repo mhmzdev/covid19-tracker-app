@@ -4,9 +4,13 @@ It's a dedication to my closest friend who has been tested positive for COVID. P
 
 A live trakcer for COVID19 stats across the Globe and my Home country Pakistan. It uses APIs so the data is live not static
 
-## Screen Shots
+## App Banner
 
 <img src = "ScreenShot/covid19.png">
+
+## Screen Shots
+
+<img src = "ScreenShot/splash.png">
 
 ## APIs Information
 For Global data: https://coronavirus-19-api.herokuapp.com/all
