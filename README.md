@@ -10,7 +10,7 @@ A live trakcer for COVID19 stats across the Globe and my Home country Pakistan. 
 
 ## Screen Shots
 
-<img src = "ScreenShot/splash.png">
+<img src = "ScreenShot/splash.jpg"> <img src = "ScreenShot/dashboard.jpg"> <img src = "ScreenShot/pak.jpg"> <img src = "ScreenShot/country.jpg"> <img src = "ScreenShot/countryDetails.jpg"> <img src = "ScreenShot/info.jpg">
 
 ## APIs Information
 For Global data: https://coronavirus-19-api.herokuapp.com/all
