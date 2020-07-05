@@ -110,6 +110,16 @@ class _MainImageState extends State<MainImage>
   Animation<double> animation;
   AnimationController _animationController;
 
+  toggleAnimation() {
+    animation = Tween(begin: 0.0, end: 25.0).animate(_animationController);
+    if (_animationController.isDismissed) {
+      _animationController.forward().whenComplete(() => toggleAnimation());
+    }
+    if (_animationController.isCompleted) {
+      _animationController.reverse().whenComplete(() => toggleAnimation());
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -117,8 +127,7 @@ class _MainImageState extends State<MainImage>
     _animationController = new AnimationController(
         duration: Duration(milliseconds: 3000), vsync: this)
       ..addListener(() => setState(() {}));
-    animation = Tween(begin: 0.0, end: 25.0).animate(_animationController);
-    _animationController.repeat();
+      toggleAnimation();
   }
 
   @override

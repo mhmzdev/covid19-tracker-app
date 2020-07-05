@@ -1,3 +1,4 @@
+import 'package:covid19/animation/bottomAnimation.dart';
 import 'package:covid19/controller/covidAPI.dart';
 import 'package:covid19/customWidgets/customLoader.dart';
 import 'package:covid19/customWidgets/homeTile.dart';
@@ -61,30 +62,38 @@ class _PakistanState extends State<Pakistan> with TickerProviderStateMixin {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        HomeTile(
-                          caseCount: snapshot.data.cases,
-                          infoHeader: 'Cases',
-                          tileColor: Colors.blueAccent,
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: snapshot.data.cases,
+                            infoHeader: 'Cases',
+                            tileColor: Colors.blueAccent,
+                          ),
                         ),
-                        HomeTile(
-                          caseCount: snapshot.data.recovered,
-                          infoHeader: 'Recoveries',
-                          tileColor: Colors.green,
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: snapshot.data.recovered,
+                            infoHeader: 'Recoveries',
+                            tileColor: Colors.green,
+                          ),
                         ),
                       ],
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        HomeTile(
-                          caseCount: snapshot.data.deaths,
-                          infoHeader: 'Deaths',
-                          tileColor: Colors.redAccent,
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: snapshot.data.deaths,
+                            infoHeader: 'Deaths',
+                            tileColor: Colors.redAccent,
+                          ),
                         ),
-                        HomeTile(
-                          caseCount: snapshot.data.tested,
-                          infoHeader: 'Tests',
-                          tileColor: Colors.orangeAccent,
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: snapshot.data.tested,
+                            infoHeader: 'Tests',
+                            tileColor: Colors.orangeAccent,
+                          ),
                         ),
                       ],
                     ),
@@ -108,7 +117,6 @@ class _PakistanState extends State<Pakistan> with TickerProviderStateMixin {
 }
 
 class Flag extends StatelessWidget {
-
   String emoji() {
     int flagOffset = 0x1F1E6;
     int asciiOffset = 0x41;
