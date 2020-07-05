@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid19/views/dashboard.dart';
+import 'package:flutter/services.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(MyApp());
@@ -27,6 +28,9 @@ final lightTheme = ThemeData(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
